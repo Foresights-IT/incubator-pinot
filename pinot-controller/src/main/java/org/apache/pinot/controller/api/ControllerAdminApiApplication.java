@@ -154,10 +154,10 @@ public class ControllerAdminApiApplication extends ResourceConfig {
     beanConfig.setScan(true);
 
     ClassLoader loader = this.getClass().getClassLoader();
-    CLStaticHttpHandler apiStaticHttpHandler = new CLStaticHttpHandler(loader, "/api/");
+//    CLStaticHttpHandler apiStaticHttpHandler = new CLStaticHttpHandler(loader, "/api/");
     // map both /api and /help to swagger docs. /api because it looks nice. /help for backward compatibility
-    httpServer.getServerConfiguration().addHttpHandler(apiStaticHttpHandler, "/api/");
-    httpServer.getServerConfiguration().addHttpHandler(apiStaticHttpHandler, "/help/");
+//    httpServer.getServerConfiguration().addHttpHandler(apiStaticHttpHandler, "/api/");
+    httpServer.getServerConfiguration().addHttpHandler(new CLStaticHttpHandler(loader, "/api/"), "/help/");
 
     URL swaggerDistLocation = loader.getResource("META-INF/resources/webjars/swagger-ui/3.18.2/");
     CLStaticHttpHandler swaggerDist = new CLStaticHttpHandler(new URLClassLoader(new URL[]{swaggerDistLocation}));
